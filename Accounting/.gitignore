@@ -5,3 +5,5 @@ riderModule.iml
 /_ReSharper.Caches/
 wwwroot
 .idea
+Accounting.MVC/node_modules
+Accounting.MVC/package-lock.json

@@ -1,13 +1,39 @@
+@model MasterCompanyPost
 
-<!DOCTYPE html>
+<div class="container-fluid" style="padding-top: 10vh">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-lg-6">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Create @ViewBag.ControllerName</h3>
+                </div>
+                <div class="card-body">
 
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
+                    <form asp-controller="MasterCompany" asp-action="Create" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" asp-for="@Model.Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Initial User Email</label>
+                            <input type="email" class="form-control" asp-for="@Model.InitialUserEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Initial User Password</label>
+                            <input type="password" class="form-control" asp-for="@Model.InitialUserPassword" required>
+                        </div>
+                        <div class="form-group clearfix">
+                            <div class="icheck-primary d-inline">
+                                <label for="checkboxPrimary1">Active</label>
+                                <input type="checkbox" class="form-control" id="checkboxPrimary1" asp-for="@Model.Active" required="required">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</body>
-</html>
