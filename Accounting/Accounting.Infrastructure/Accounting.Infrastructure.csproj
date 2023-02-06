@@ -9,7 +9,7 @@
     <ItemGroup>
       <Folder Include="Extensions" />
       <Folder Include="IOC" />
-      <Folder Include="Repositories" />
+      <Folder Include="Repositories\Interfaces" />
     </ItemGroup>
 
     <ItemGroup>
