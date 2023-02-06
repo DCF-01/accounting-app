@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Accounting.MVC.Controllers;
 
-public class MasterCompanyController : Controller
+public class MasterCompanyController : BaseController
 {
     private readonly ILogger<MasterCompanyController> _logger;
     private readonly IMasterCompanyService _masterCompanyService;
