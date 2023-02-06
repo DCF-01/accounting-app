@@ -12,9 +12,9 @@ public class MasterCompanyService : IMasterCompanyService
     private readonly IMapper _mapper;
     private readonly IUserInformation _userInformation;
 
-    public MasterCompanyService(IMasterCompanyRepository MasterCompanyRepository, IMapper mapper, IUserInformation userInformation)
+    public MasterCompanyService(IMasterCompanyRepository masterCompanyRepository, IMapper mapper, IUserInformation userInformation)
     {
-        _masterCompanyRepository = MasterCompanyRepository;
+        _masterCompanyRepository = masterCompanyRepository;
         _mapper = mapper;
         _userInformation = userInformation;
     }
