@@ -1,0 +1,56 @@
+﻿<div class="card">
+    <div class="card-header">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+            <h3 class="card-title">
+                @ViewBag.ControllerName
+            </h3>
+            <a class="btn btn-success" href="/@ViewBag.ControllerName/Create"><i class="fas fa-plus-square"></i>&nbsp;Create</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="productsTable" class="table table-bordered dataTable dtr-inline table-hover">
+                    <thead>
+                    <tr>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Name</th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">SWIFT</th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Bank Accounts Count</th>
+                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+      $("#productsTable").DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "/JSON/@ViewBag.ControllerName",
+                type: "GET"
+            },
+            columns: [
+                    { data: "name" },
+                    { data: "swift" },
+                    { data: "bankAccountsCount" },
+                    { 
+                        render: (data, type, row, meta) => {
+                             return `
+                                <div class="d-flex justify-content-center">
+                                     <a class="btn btn-danger mr-2" href="/@ViewBag.ControllerName/Delete/${row.bankId}"><i class="fas fa-trash"></i>&nbsp;Delete</a>
+                                     <a class="btn btn-warning text-white" href="/@ViewBag.ControllerName/Manage/${row.bankId}"><i class="fas fa-edit"></i>&nbsp;Edit</a>
+                                 </div>`;
+                        }
+                    }
+                ]
+            
+      });
+    });
+</script>

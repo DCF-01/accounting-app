@@ -70,4 +70,9 @@ public class AuthController : BaseController
 
             return RedirectToAction("Index", "Home");
         }
+
+        public async Task<IActionResult> ResetPassword()
+        {
+            return RedirectToAction("ResetPassword", "Auth");
+        }
 }

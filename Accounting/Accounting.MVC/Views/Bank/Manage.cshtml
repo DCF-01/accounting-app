@@ -1,0 +1,53 @@
+﻿@model BankGet
+
+<div class="container-fluid" style="padding-top: 10vh">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-lg-6">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Create @ViewBag.ControllerName</h3>
+                </div>
+                <div class="card-body">
+
+                    <form asp-controller="Bank" asp-action="Manage" method="post" enctype="multipart/form-data">
+                        <input type="hidden" value="@Model.BankId" name="BankId"/>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" name="Name" value="@Model.Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>SWIFT</label>
+                            <input type="number" class="form-control" name="SWIFT" value="@Model.SWIFT" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Bank Accounts</label>
+                            <select class="form-control" name="BankAccountIds[]" id="select2-accounts" multiple="multiple" required="required">
+                                @foreach (var account in Model.BankAccounts)
+                                {
+                                    if (account.BankId == @Model.BankId)
+                                    {
+                                        <option value="@account.BankAccountId" selected>@account.Name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@account.BankAccountId">@account.Name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Update" class="btn btn-primary"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        $("#select2-accounts").select2({
+            width: "100%"
+        });
+    });
+</script>

@@ -4,9 +4,9 @@ using AutoMapper;
 
 namespace Accounting.Core.Mappings;
 
-public class MasterUserProfile : Profile
+public class MasterCompanyProfile : Profile
 {
-    public MasterUserProfile()
+    public MasterCompanyProfile()
     {
         CreateMap<MasterCompany, MasterCompanyGet>().ReverseMap();
         

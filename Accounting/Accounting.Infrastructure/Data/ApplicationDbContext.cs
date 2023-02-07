@@ -10,4 +10,6 @@ public class ApplicationDbContext : IdentityDbContext<User>
     { }
     
     public DbSet<MasterCompany> MasterCompanies { get; set; }
+    public DbSet<Bank> Banks { get; set; }
+    public DbSet<BankAccount> BankAccounts { get; set; }
 }

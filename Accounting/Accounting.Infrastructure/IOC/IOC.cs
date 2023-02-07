@@ -9,6 +9,8 @@ public static class IOC
     public static IServiceCollection AddSQLModule(this IServiceCollection services)
     {
         services.AddScoped<IMasterCompanyRepository, MasterCompanyRepository>();
+        services.AddScoped<IBankAccountRepository, BankAccountRepository>();
+        services.AddScoped<IBankRepository, BankRepository>();
 
         return services;
     }
