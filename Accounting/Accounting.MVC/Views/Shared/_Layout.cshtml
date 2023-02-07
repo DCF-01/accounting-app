@@ -133,6 +133,42 @@
 
             </ul>
         </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-coins"></i>
+                <p>
+                    Finance
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a asp-controller="VAT" asp-action="Index" class="nav-link">
+                        <i class="nav-icon fas fa-percentage"></i>
+                        <p data-controller="VAT">VATs</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Bank" asp-action="Index" class="nav-link">
+                        <i class="nav-icon fas fa-university"></i>
+                        <p data-controller="Bank">Banks</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="BankAccount" asp-action="Index" class="nav-link">
+                        <i class="nav-icon fas fa-money-check"></i>
+                        <p data-controller="BankAccount">Bank Accounts</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Currency" asp-action="Index" class="nav-link">
+                        <i class="nav-icon fas fa-coins"></i>
+                        <p data-controller="Currency">Currencies</p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        
     </ul>
 </nav>
 <!-- /.sidebar-menu -->

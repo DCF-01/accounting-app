@@ -12,4 +12,6 @@ public class ApplicationDbContext : IdentityDbContext<User>
     public DbSet<MasterCompany> MasterCompanies { get; set; }
     public DbSet<Bank> Banks { get; set; }
     public DbSet<BankAccount> BankAccounts { get; set; }
+    public DbSet<Currency> Currencies { get; set; }
+    public DbSet<VAT> VATs { get; set; }
 }

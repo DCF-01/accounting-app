@@ -48,4 +48,33 @@ public static class QueryExtensions
             ? bankAccountsQuery.OrderBy(sortExpression)
             : bankAccountsQuery.OrderByDescending(sortExpression);
     }
+    
+    public static IQueryable<Currency> Order(this IQueryable<Currency> currenciesQuery, string sortOrder, int sortColumn)
+    {
+        Expression<Func<Currency, object>> sortExpression = sortColumn switch
+        {
+            0 => sortExpression => sortExpression.Name.ToLower(),
+            1 => sortExpression => sortExpression.Value,
+            2 => sortExpression => sortExpression.Products.Count,
+            _ => sortExpression => sortExpression.Name
+        };
+
+        return sortOrder == "asc"
+            ? currenciesQuery.OrderBy(sortExpression)
+            : currenciesQuery.OrderByDescending(sortExpression);
+    }
+    
+    public static IQueryable<VAT> Order(this IQueryable<VAT> vatQuery, string sortOrder, int sortColumn)
+    {
+        Expression<Func<VAT, object>> sortExpression = sortColumn switch
+        {
+            0 => sortExpression => sortExpression.Name,
+            1 => sortExpression => sortExpression.Value,
+            _ => sortExpression => sortExpression.Name
+        };
+
+        return sortOrder == "asc"
+            ? vatQuery.OrderBy(sortExpression)
+            : vatQuery.OrderByDescending(sortExpression);
+    }
 }

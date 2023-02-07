@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Accounting.Core.IOC;
 using Accounting.Infrastructure.Data;
 using Accounting.Infrastructure.IOC;
@@ -19,6 +20,11 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddCoreModule();
 builder.Services.AddSQLModule();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Users", policy => policy.RequireClaim(ClaimTypes.Role, "User"));
+});
 
 var app = builder.Build();
 
