@@ -15,4 +15,6 @@ public class ApplicationDbContext : IdentityDbContext<User>
     public DbSet<Currency> Currencies { get; set; }
     public DbSet<VAT> VATs { get; set; }
     public DbSet<Product> Products { get; set; }
+    public DbSet<Group> Groups { get; set; }
+    public DbSet<Variation> Variations { get; set; }
 }

@@ -64,6 +64,18 @@ public static class QueryExtensions
             : currenciesQuery.OrderByDescending(sortExpression);
     }
     
+    public static IQueryable<Variation> Order(this IQueryable<Variation> variationsQuery, string sortOrder, int sortColumn)
+    {
+        Expression<Func<Variation, object>> sortExpression = sortColumn switch
+        {
+            _ => sortExpression => sortExpression.Name
+        };
+
+        return sortOrder == "asc"
+            ? variationsQuery.OrderBy(sortExpression)
+            : variationsQuery.OrderByDescending(sortExpression);
+    }
+    
     public static IQueryable<VAT> Order(this IQueryable<VAT> vatQuery, string sortOrder, int sortColumn)
     {
         Expression<Func<VAT, object>> sortExpression = sortColumn switch
@@ -76,6 +88,20 @@ public static class QueryExtensions
         return sortOrder == "asc"
             ? vatQuery.OrderBy(sortExpression)
             : vatQuery.OrderByDescending(sortExpression);
+    }
+    
+    public static IQueryable<Group> Order(this IQueryable<Group> GroupQuery, string sortOrder, int sortColumn)
+    {
+        Expression<Func<Group, object>> sortExpression = sortColumn switch
+        {
+            0 => sortExpression => sortExpression.Name,
+            1 => sortExpression => sortExpression.Products.Count(),
+            _ => sortExpression => sortExpression.Name
+        };
+
+        return sortOrder == "asc"
+            ? GroupQuery.OrderBy(sortExpression)
+            : GroupQuery.OrderByDescending(sortExpression);
     }
     
     public static IQueryable<Product> Order(this IQueryable<Product> productQuery, string sortOrder, int sortColumn)

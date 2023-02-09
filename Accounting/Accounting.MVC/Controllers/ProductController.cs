@@ -1,12 +1,19 @@
+using Accounting.Core.Interfaces;
+using Accounting.Core.Requests;
+using Accounting.Infrastructure.Data;
+using Accounting.Infrastructure.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+
 namespace Accounting.MVC.Controllers;
 
 public class ProductController : BaseController
     {
         readonly ApplicationDbContext _ctx;
-        readonly UserManager<ApplicationUser> _userManager;
+        readonly UserManager<User> _userManager;
         private readonly IProductService _productService;
 
-        public ProductController(ApplicationDbContext context, UserManager<ApplicationUser> userManager,
+        public ProductController(ApplicationDbContext context, UserManager<User> userManager,
             IProductService productService)
         {
             _ctx = context;
@@ -81,59 +88,7 @@ public class ProductController : BaseController
         {
             try
             {
-                //get product with related Groups
-                /*var product = await _ctx.Products.Include(product => product.Groups)
-                    .Include(product => product.Spec)
-                    .Include(product => product.Variations)
-                    .Where(product => product.ProductId == id)
-                    .FirstOrDefaultAsync();
-
-                var all_specs = await _ctx.Specs
-                    .Select(s => s.Name).ToListAsync();
-
-                var all_variations = await _ctx.Variations
-                    .Select(item => item.Name).ToListAsync();
-
-                var current_variations = await _ctx.Variations
-                    .Where(item => product.Variations.Contains(item))
-                    .Select(item => item.Name).ToListAsync();
-
-                var byte_arr_img = product.Img;
-
-                string img = Convert.ToBase64String(byte_arr_img);
-
-                var item = new ProductViewModel
-                {
-                    Name = product.Name,
-                    SKU = product.SKU,
-                    Description = product.Description,
-                    ShortDescription = product.ShortDescription,
-                    Price = product.RetailPrice,
-                    SalePrice = product.WholesalePrice,
-                    OnSale = product.OnSale.ToString(),
-                    InStock = product.InStock.ToString(),
-                    CurrentSpec = product.Spec.Name,
-                    GetSpecs = all_specs,
-                    GetImg = img,
-                    GetVariations = all_variations,
-                    CurrentVariations = current_variations
-                };
-
-                //current active Groups
-                item.GetGroups = new List<string>();
-
-                //all available Groups
-                item.Groups = _ctx.Groups.Select(item => item.Name).ToArray();
-
-                if (product.Groups != null)
-                {
-                    foreach (var i in product.Groups)
-                    {
-                        item.GetGroups.Add(i.Name);
-                    }
-                }*/
                 var result = await _productService.GetAsync(id);
-
                 return View(result);
 
             }
