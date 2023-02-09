@@ -77,4 +77,22 @@ public static class QueryExtensions
             ? vatQuery.OrderBy(sortExpression)
             : vatQuery.OrderByDescending(sortExpression);
     }
+    
+    public static IQueryable<Product> Order(this IQueryable<Product> productQuery, string sortOrder, int sortColumn)
+    {
+        Expression<Func<Product, object>> sortExpression = sortColumn switch
+        {
+            0 => sortExpression => sortExpression.SKU,
+            1 => sortExpression => sortExpression.Name,
+            2 => sortExpression => sortExpression.WholesalePrice,
+            3 => sortExpression => sortExpression.RetailPrice,
+            4 => sortExpression => sortExpression.OnSale,
+            5 => sortExpression => sortExpression.InStock,
+            _ => sortExpression => sortExpression.Name
+        };
+
+        return sortOrder == "asc"
+            ? productQuery.OrderBy(sortExpression)
+            : productQuery.OrderByDescending(sortExpression);
+    }
 }

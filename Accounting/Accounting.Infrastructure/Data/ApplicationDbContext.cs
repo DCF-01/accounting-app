@@ -14,4 +14,5 @@ public class ApplicationDbContext : IdentityDbContext<User>
     public DbSet<BankAccount> BankAccounts { get; set; }
     public DbSet<Currency> Currencies { get; set; }
     public DbSet<VAT> VATs { get; set; }
+    public DbSet<Product> Products { get; set; }
 }

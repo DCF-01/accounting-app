@@ -1,0 +1,123 @@
+﻿@using System.Linq
+@model ProductGet
+@{
+    ViewBag.Title = User.Identity.Name;
+}
+<div class="container-fluid" style="padding-top: 10vh">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-lg-6">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Manage @ViewBag.ControllerName</h3>
+                </div>
+                <div class="card-body">
+
+                    <form asp-controller="Product" asp-action="Create" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Име на производ</label>
+                            <input type="text" class="form-control" asp-for="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>SKU</label>
+                            <input type="text" class="form-control" asp-for="SKU" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Упатство за употреба</label>
+                            <textarea type="text" class="form-control" asp-for="Description" rows="2" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Опис</label>
+                            <textarea type="text" class="form-control" asp-for="ShortDescription" rows="2" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Редовна Цена</label>
+                            <input type="text" class="form-control" asp-for="RetailPrice" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Промотивна цена</label>
+                            <input type="text" class="form-control" asp-for="WholesalePrice">
+                        </div>
+                        <div class="form-group">
+                            <label>На промоција</label>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="OnSale" name="OnSale" value="true">
+                                <label class="custom-control-label" for="OnSale">Set sale status</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>На залиха</label>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="InStock" name="InStock" value="true">
+                                <label class="custom-control-label" for="InStock">На залиха</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Групи</label>
+                            <input type="hidden" name="Groups.Index" value="cold"/>
+                            <select class="form-control" name="GroupIds[]" id="select2-groups" multiple="multiple" required="required">
+                                @foreach (var group in Model.Groups)
+                                {
+                                    <option value="@group.GroupId">@group.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Specs</label>
+                            <select class="form-control" name="SpecId" id="select2-specs"required="required">
+                                @foreach (var spec in Model.Specs)
+                                {
+                                    <option value="@spec.SpecId" selected>@spec.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Варијации</label>
+                            <select class="form-control" name="VariationIds[]" id="select2-variations" multiple="multiple" required="required">
+                                @foreach (var variation in Model.Variations)
+                                {
+                                    <option value="@variation.VariationId">@variation.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>VAT</label>
+                            <select class="form-control" name="VATId" id="select2-vats" required="required">
+                                @foreach (var vat in Model.VATS)
+                                {
+                                    <option value="@vat.VATId">@vat.Value</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Currency</label>
+                            <select class="form-control" name="CurrencyId" id="select2-currencies" required="required">
+                                @foreach (var currencyGet in Model.Currencies)
+                                {
+                                    <option value="@currencyGet.CurrencyId">@currencyGet.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Слика</label>
+                            <input type="file" name="Img" id="Imageinput" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="files">Внеси слики за галерија:</label>
+                            <input type="file" id="files" name="GalleryImages" multiple>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Зачувај" class="btn btn-primary"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        $("#select2-roles, #select2-groups, #select2-variations, #select2-specs, #select2-currencies, #select2-vats").select2({
+            width: "100%"
+        });
+    });
+</script>
