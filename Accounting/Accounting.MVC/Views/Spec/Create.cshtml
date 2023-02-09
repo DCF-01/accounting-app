@@ -1,0 +1,68 @@
+﻿@model SpecGet
+@{
+    ViewBag.Title = User.Identity.Name;
+}
+<div class="container-fluid" style="padding-top: 10vh">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-lg-8">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Create @ViewBag.ControllerName</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="Spec" asp-action="Create" method="post" enctype="multipart/form-data" id="spec-form">
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label>Spec Name</label>
+                                <input type="text" class="form-control" name="Name">
+                            </div>
+                        </div>
+                        <div class="form-group row row-parent">
+                            <div class="col">
+                                <label>Type</label>
+                                <input type="text" class="form-control column-1" name="First[]">
+                            </div>
+                            <div class="col">
+                                <label>Title1</label>
+                                <input type="text" class="form-control column-2" name="First[]">
+                            </div>
+                            <div class="col">
+                                <label>Title2</label>
+                                <input type="text" class="form-control column-3" name="First[]">
+                            </div>
+                            <div class="col">
+                                <label>Title3</label>
+                                <input type="text" class="form-control column-4" name="First[]">
+                            </div>
+                        </div>
+                        <div class="form-group row row-parent">
+                            <div class="col">
+                                <input type="text" class="form-control column-toggle-1" style="opacity: 0.4;" name="Rest[]" disabled>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control column-toggle-2" style="opacity: 0.4;" name="Rest[]" disabled>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control column-toggle-3" style="opacity: 0.4;" name="Rest[]" disabled>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control column-toggle-4" style="opacity: 0.4;" name="Rest[]" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group" id="spec-add-item-group">
+                            <button type="button" class="btn btn-secondary" id="add-row-btn"><i class="fas fa-plus pr-2"></i>Add Row</button>
+                            <button type="button" class="btn btn-secondary" id="add-col-btn"><i class="fas fa-plus pr-2"></i>Add Column</button>
+                        </div>
+                        <div class="form-group" id="spec-remove-item-group">
+                            <button type="button" class="btn btn-secondary" id="remove-row-btn"><i class="fas fa-plus pr-2"></i>Delete Row</button>
+                            <button type="button" class="btn btn-secondary" id="remove-col-btn"><i class="fas fa-plus pr-2"></i>Delete Column</button>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-default"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

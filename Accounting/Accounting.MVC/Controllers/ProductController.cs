@@ -40,11 +40,6 @@ public class ProductController : BaseController
         {
             try
             {
-                if (productPost.ProductImage != null && productPost.ProductImage.Length > 0)
-                {
-                    var bytes = await productPost.ProductImage.GetBytesAsync();
-                    productPost.CompressedProductImage = bytes.CompressBytes();
-                }
                 await _productService.CreateAsync(productPost);
                 
                 return RedirectToAction("Index");

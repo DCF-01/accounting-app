@@ -64,6 +64,18 @@ public static class QueryExtensions
             : currenciesQuery.OrderByDescending(sortExpression);
     }
     
+    public static IQueryable<Spec> Order(this IQueryable<Spec> specsQuery, string sortOrder, int sortColumn)
+    {
+        Expression<Func<Spec, object>> sortExpression = sortColumn switch
+        {
+            _ => sortExpression => sortExpression.Name
+        };
+
+        return sortOrder == "asc"
+            ? specsQuery.OrderBy(sortExpression)
+            : specsQuery.OrderByDescending(sortExpression);
+    }
+    
     public static IQueryable<Variation> Order(this IQueryable<Variation> variationsQuery, string sortOrder, int sortColumn)
     {
         Expression<Func<Variation, object>> sortExpression = sortColumn switch

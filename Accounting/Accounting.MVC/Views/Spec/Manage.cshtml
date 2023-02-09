@@ -1,0 +1,65 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Accounting.Infrastructure.Models.Spec
+@{
+    ViewBag.Title = User.Identity.Name;
+}
+@{
+    var arr_first = Model.First;
+    var arr_last = Model.Rest;
+    //number of Rest[] rows
+    var num_of_rows = ((Model.First.Length + Model.Rest.Length) / Model.ItemsPerRow) - 1;
+    var start = 0;
+}
+<div class="container-fluid" style="padding-top: 10vh">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-lg-8">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Create @ViewBag.ControllerName</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="Spec" asp-action="Manage" method="post" enctype="multipart/form-data" id="spec-form">
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label>Spec Name</label>
+                                <input type="text" class="form-control" name="Name" value="@Model.Name">
+                            </div>
+                        </div>
+                        <div class="form-group row row-parent">
+                            @for (int k = 0; k < Model.ItemsPerRow; k++)
+                            {
+                                <div class="col">
+                                    <label>Field @(k + 1)</label>
+                                    <input type="text" class="form-control column-@(k + 1)" name="First[]" value="@arr_first[k]">
+                                </div>
+                            }
+                        </div>
+                        @for (int i = 1; i < num_of_rows; i++)
+                        {
+                            <div class="form-group row row-parent">
+                                @for (int j = start; j < Model.ItemsPerRow; j++)
+                                {
+                                    <div class="col">
+                                        <input type="text" class="form-control column-toggle-@(j + 1)" name="Rest[]" value="@arr_last[j]">
+                                    </div>
+                                }
+                            </div>
+                            start += Model.ItemsPerRow;
+                        }
+                        <div class="form-group" id="spec-add-item-group">
+                            <button type="button" class="btn btn-secondary" id="add-row-btn"><i class="fas fa-plus pr-2"></i>Add Row</button>
+                            <button type="button" class="btn btn-secondary" id="add-col-btn"><i class="fas fa-plus pr-2"></i>Add Column</button>
+                        </div>
+                        <div class="form-group" id="spec-remove-item-group">
+                            <button type="button" class="btn btn-secondary" id="remove-row-btn"><i class="fas fa-plus pr-2"></i>Delete Row</button>
+                            <button type="button" class="btn btn-secondary" id="remove-col-btn"><i class="fas fa-plus pr-2"></i>Delete Column</button>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-default"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

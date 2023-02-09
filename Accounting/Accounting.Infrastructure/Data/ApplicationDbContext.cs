@@ -17,4 +17,5 @@ public class ApplicationDbContext : IdentityDbContext<User>
     public DbSet<Product> Products { get; set; }
     public DbSet<Group> Groups { get; set; }
     public DbSet<Variation> Variations { get; set; }
+    public DbSet<Spec> Specs { get; set; }
 }

@@ -2,6 +2,7 @@
 using Accounting.Infrastructure.Data;
 using Accounting.Infrastructure.Models;
 using Accounting.Infrastructure.Repositories.Interfaces;
+using Accounting.Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Accounting.Infrastructure.Repositories;
