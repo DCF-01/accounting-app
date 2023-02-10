@@ -18,4 +18,5 @@ public class ApplicationDbContext : IdentityDbContext<User>
     public DbSet<Group> Groups { get; set; }
     public DbSet<Variation> Variations { get; set; }
     public DbSet<Spec> Specs { get; set; }
+    public DbSet<Company> Companies { get; set; }
 }

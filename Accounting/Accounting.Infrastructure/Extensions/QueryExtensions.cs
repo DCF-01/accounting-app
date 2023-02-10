@@ -133,4 +133,34 @@ public static class QueryExtensions
             ? productQuery.OrderBy(sortExpression)
             : productQuery.OrderByDescending(sortExpression);
     }
+    
+    public static IQueryable<User> Order(this IQueryable<User> userQuery, string sortOrder, int sortColumn)
+    {
+        Expression<Func<User, object>> sortExpression = sortColumn switch
+        {
+            0 => sortExpression => sortExpression.UserName,
+            1 => sortExpression => sortExpression.Email,
+            _ => sortExpression => sortExpression.UserName
+        };
+
+        return sortOrder == "asc"
+            ? userQuery.OrderBy(sortExpression)
+            : userQuery.OrderByDescending(sortExpression);
+    }
+    
+    public static IQueryable<Company> Order(this IQueryable<Company> companiesQuery, string sortOrder, int sortColumn)
+    {
+        Expression<Func<Company, object>> sortExpression = sortColumn switch
+        {
+            0 => sortExpression => sortExpression.Name,
+            1 => sortExpression => sortExpression.Address,
+            2 => sortExpression => sortExpression.EDB,
+            3 => sortExpression => sortExpression.City,
+            _ => sortExpression => sortExpression.Name
+        };
+
+        return sortOrder == "asc"
+            ? companiesQuery.OrderBy(sortExpression)
+            : companiesQuery.OrderByDescending(sortExpression);
+    }
 }
